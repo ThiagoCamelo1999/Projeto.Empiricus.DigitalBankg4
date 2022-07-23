@@ -1,7 +1,7 @@
 package projeto.empicicus.digitalbank.g4;
 
 
-//Autor Thiago Da Silva Barbosa Camelo
+//Autor Thiago Da Silva Barbosa Camelo.
 
 public class ContaPoupanca extends Conta {
 	
@@ -16,6 +16,7 @@ public class ContaPoupanca extends Conta {
 		}
 	
 	
+	
 	//MÉTODOS
 	public void correcao(int data) {
 		
@@ -25,7 +26,8 @@ public class ContaPoupanca extends Conta {
 		}
 	}
 	
-
+	
+	
 	//MÉTODOS GETTERS E SETTERS
 	public int getDiaAniversarioPoupanca() {
 		return diaAniversarioPoupanca;
