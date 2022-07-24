@@ -22,7 +22,9 @@ public class ContaPoupanca extends Conta {
 		
 		if (data == diaAniversarioPoupanca) {//VERIFICANDO CONDIÇÃO PARA MÉTODO SER UTILIZADO
 			this.setSaldo((this.getSaldo() * 0.05f) + this.getSaldo() );
-			System.out.print("Saldo corrigido: " + this.getSaldo() );
+			System.out.println("Saldo corrigido: " + this.getSaldo() + "\n");
+		} else {
+			System.out.print("Não é a data para correção \n");
 		}
 	}
 	

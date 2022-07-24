@@ -2,7 +2,7 @@ package projeto.empicicus.digitalbank.g4;
 
 //Autor Thiago Da Silva Barbosa Camelo
 
-public abstract class Conta {
+public abstract class Conta implements ControladorConta{
 	
 	//ATRIBUTOS
 	private int numero;
@@ -31,19 +31,21 @@ public abstract class Conta {
 	
 	
 	//MÉTODOS
+	
 	private void debito(float valor) {//RETIRA O VALOR DO SALDO CASO TENHA USADO A FUNÇÃO DE DEBITO
+		if(this.getSaldo() >= valor) {
 		this.saldo = this.getSaldo() - valor;
+		} else {
+			System.out.println("Impossivel realizar operação de debito, valor insuficiente!");//ERRO PARA QUE SALDO NÃO POSSA FICAR NEGATIVO DURANTE AS 10 MOVIMENTAÇÕES
+		}
 	}
 	public void credito(float valor) {
 		this.saldo = this.getSaldo() + valor;//COLOCA O VALOR NO SALDO CASO TENHA USADO A FUNÇÃO DE CREDITO
 	}
-	
-	public void calcDebito(float valor) {//MÉTODO PARA ATRUIBUIR O VALOR AO METODO DEBITO POIS ELE SENDO PRIVADO NÃO PODEMOS CHAMAR ELE NA MAIN PRINCIPAL
-		if(this.saldo >= valor) {
+		
+			@Override
+	public void debitado(float valor) { //IMPLEMENTO DE INTERFACE ContaControlador PARA ENCAPSULAMENTO DE MÉTODO
 			this.debito(valor);
-			} else {
-				System.out.println("Impossivel realizar operação de debito, valor insuficiente!");//ERRO PARA QUE SALDO NÃO POSSA FICAR NEGATIVO DURANTE AS 10 MOVIMENTAÇÕES
-			}
 	}
 	
 	
