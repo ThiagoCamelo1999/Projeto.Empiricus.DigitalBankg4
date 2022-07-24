@@ -1,4 +1,4 @@
-package projeto.empicicus.digitalbank.g4;
+package projeto.empiricus.digitalbank.g4;
 
 
 //Autor Thiago Da Silva Barbosa Camelo.
@@ -7,6 +7,7 @@ public class ContaPoupanca extends Conta {
 	
 	//ATRIBUTOS
 	private int diaAniversarioPoupanca;
+	
 	
 	
 	//CONSTRUTOR
