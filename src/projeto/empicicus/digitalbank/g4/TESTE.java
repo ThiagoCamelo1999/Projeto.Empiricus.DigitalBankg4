@@ -11,13 +11,15 @@ public class TESTE {
 		Scanner entrada = new Scanner(System.in);
 		
 		//VARIAVEIS
-		int conta;
+		int conta, numero;
+		String cpf, continuar, emprestimo;
+		float vMovimento;
 		
 		
 		do { //PARA REPETIR A OPÇÃO DE ESCOLHA ENQUANTO NÃO DIGITAR UM VALOR VALIDO
 			System.out.println("\nDigitalBank G4");
 			Thread.sleep(500);
-			System.out.println("Cuidamos do seu dinheiro, para você cuidar do realmente importa");
+			System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
 			
 		Thread.sleep(500);
 		
@@ -50,11 +52,21 @@ public class TESTE {
 				
 				
 				System.out.print("Digite o numero: ");
+<<<<<<< HEAD
 				int numero = entrada.nextInt();
 				
 				
 				System.out.print("Digite seu cpf: ");
 				String cpf = entrada.next();
+=======
+				numero = entrada.nextInt();
+				
+			
+				System.out.print("Digite seu cpf: ");
+				cpf = entrada.next();
+				
+				
+>>>>>>> 7537527e6ffb897e73454c9defb4940ee22acd72
 				ContaPoupanca cp1 = new ContaPoupanca(numero, cpf);
 				do
 				if (cp1.getCpf().length() != 11) {
@@ -79,12 +91,12 @@ public class TESTE {
 				}
 				
 				//VARIAVEIS USADAS LOCALMENTE
-				String continuar = null;
-				float vMovimento = 0;
+				continuar = null;
+				vMovimento = 0;
 				
 				Thread.sleep(500);
 				
-				//LAÇÕ PARA REPETIR A MOVIMENTAÇÃO 10 VEZES 
+				//LAÇO PARA REPETIR A MOVIMENTAÇÃO 10 VEZES 
 				for(int i = 1; i <= 10; i++) {
 					System.out.print("MOVIMENTO - D-debito ou C-crédito: ");
 					String tipoMV = entrada.next();
@@ -128,25 +140,264 @@ public class TESTE {
 				
 		
 			break;
+			
+			
 			case 2:
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
 			break;
+			
+			
 			case 3:
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
 			break;
+			
+			
 			case 4:
+				
+				//Felipe Morilho de Castro
+				
+				float valorEmprestimoEmpresa, valorDisponivelEmpresa = 10000;
+				
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
+				
+				
+				Thread.sleep(500);
+				System.out.println("\nCONTA EMPRESA");
+				Thread.sleep(500);
+				
+				
+				System.out.print("Digite o numero: ");
+				numero = entrada.nextInt();
+				
+				do{
+					System.out.print("Digite seu CPF: ");
+					cpf = entrada.next();
+				}while (cpf.length() != 11);
+
+				ContaEmpresa ce1 = new ContaEmpresa(numero, cpf);
+				
+				Thread.sleep(500);
+					
+			
+				continuar = null;			
+				
+				Thread.sleep(500);
+				
+				//LAÇO PARA REPETIR A MOVIMENTAÇÃO 10 VEZES 
+				for(int i = 1; i <= 10; i++) {
+					
+					//PERGUNTA SOBRE O EMPRÉSTIMO
+					if (valorDisponivelEmpresa > 0) {
+					System.out.println("\n");
+					System.out.println("Você tem R$" + valorDisponivelEmpresa + " aprovados para empréstimo. Vamos dar um upgrade na sua empresa?");	
+					System.out.println("Digite: \n S - Sim  \n N - Não");
+					emprestimo = entrada.next();
+					
+					switch (emprestimo){
+					
+					case "s", "S":	
+					//if (emprestimo.equalsIgnoreCase("S")) {
+						do {
+						System.out.println("Qual valor deseja pegar de empréstimo?");
+						valorEmprestimoEmpresa = entrada.nextFloat();
+						if (valorEmprestimoEmpresa <= 10000 && valorEmprestimoEmpresa < valorDisponivelEmpresa) {
+						valorDisponivelEmpresa -= valorEmprestimoEmpresa;
+						ce1.pedirEmprestimo(valorEmprestimoEmpresa);
+						}else {
+							System.out.println("Valor não aprovado. Tente um novo valor abaixo de R$" + valorDisponivelEmpresa);
+						}
+						} while (valorEmprestimoEmpresa > 10000);
+					
+					case "n","N":
+						break;
+					
+					default:
+						System.out.println("Comando Inválido.");							
+					}
+					} else {
+						System.out.println("Seu limite de crédito esgotou. Aproveite o empréstimo já realizado!");
+					}
+					
+					System.out.print("MOVIMENTO \nD - Debito \nC - Crédito: ");
+					String tipoMV = entrada.next();
+					
+					//VERIFICA SE O TIPO DA MOVIMENTAÇÃO É CREDITO OU DÉBITO.
+					switch (tipoMV) {
+					
+					case "C","c": 
+						
+						System.out.print("Valor movimento: R$");
+						vMovimento = entrada.nextFloat();
+						ce1.credito(vMovimento);
+						System.out.println("Saldo atualizado: R$" + ce1.getSaldo());
+						
+						
+						break;
+						
+					case "D","d":
+						
+						System.out.print("Valor movimento: R$");
+						vMovimento = entrada.nextFloat();
+						ce1.debitado(vMovimento);
+						System.out.println("Saldo atualizado: R$" + ce1.getSaldo());
+					
+						break;
+					
+					default:
+						
+						System.out.println("Comando inválido.");
+						break;
+					}
+										
+					Thread.sleep(500);
+					
+					if(i == 10) {//IF PARA OPÇÃO CONTINUAR NÃO APAREÇA UMA VEZ A MAIS 
+						break;
+					}
+					
+					//PERGUNTA SE É PARA CONTINUAR COM AS MOVIMENTAÇÕES
+
+					System.out.print("\nContinuar S/N: ");
+					continuar = entrada.next();
+					 
+					 //Verificação para continuar ou não as movimentações
+					if (continuar.equalsIgnoreCase("N")) {
+						 break;
+					 
+					 }
+				}				
+		
+				System.out.println("\nAgradecemos a preferência!");
+
 			break;
 			case 5:
-				System.out.println("\nDigitalBank G4");
+				
+				//Felipe Morilho de Castro
+				
+				float valorDisponivelEstudantil = 5000;
+				float valorEmprestimoEstudantil;
+				
+				System.out.println("DigitalBank G4");
 				Thread.sleep(500);
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
+				
+				Thread.sleep(500);
+				System.out.println("CONTA ESTUDANTIL");
+				Thread.sleep(500);
+				
+				System.out.print("Digite o numero: ");
+				numero = entrada.nextInt();
+				
+				do{
+					System.out.print("Digite seu CPF: ");
+					cpf = entrada.next();
+				}while (cpf.length() != 11);
+
+				ContaEstudantil est1 = new ContaEstudantil(numero, cpf);
+				
+				Thread.sleep(500);
+					
+			
+				continuar = null;
+				
+				Thread.sleep(500);
+				
+				//LAÇO PARA REPETIR A MOVIMENTAÇÃO 10 VEZES 
+				for(int i = 1; i <= 10; i++) {
+					
+					//PERGUNTA SOBRE O EMPRÉSTIMO
+					
+					if (valorDisponivelEstudantil > 0 ) {
+						
+					System.out.println("\nVocê tem R$" + valorDisponivelEstudantil + " aprovados para empréstimo. Vamos aproveitar?");	
+					System.out.println("Digite: \nS - Sim  \nN - Não");
+					emprestimo = entrada.next();
+					
+					
+					switch (emprestimo){
+						
+					case "s", "S":	
+					
+					//if (emprestimo.equalsIgnoreCase("S")) {
+						do {
+						System.out.println("Qual valor deseja pegar de empréstimo?");
+						valorEmprestimoEstudantil = entrada.nextFloat();
+						if (valorEmprestimoEstudantil <= 5000 && valorEmprestimoEstudantil <= valorDisponivelEstudantil) {
+						valorDisponivelEstudantil -=  valorEmprestimoEstudantil;
+						est1.usarEstudantil(valorEmprestimoEstudantil);
+						}else {
+							System.out.println("Valor não aprovado. Tente um novo valor abaixo de R$" + valorDisponivelEstudantil);
+						}
+						} while (valorEmprestimoEstudantil > 5000);
+						
+					case "n","N":
+						break;
+					
+					default:
+						System.out.println("Comando Inválido.");
+					}
+					} else {
+						System.out.println("Seu limite de crédito esgotou. Aproveite o empréstimo já realizado!");
+					}
+					
+					System.out.print("MOVIMENTO \nD - Debito  \nC - Crédito: ");
+					String tipoMV = entrada.next();
+					
+					//VERIFICA SE O TIPO DA MOVIMENTAÇÃO É CREDITO.
+					switch (tipoMV) {
+					
+					case "C","c": 
+						
+						System.out.print("Valor movimento: R$");
+						vMovimento = entrada.nextFloat();
+						est1.credito(vMovimento);
+						System.out.println("Saldo atualizado: R$" + est1.getSaldo());
+						
+						
+						break;
+						
+					
+					case "D","d":
+						
+						System.out.print("Valor movimento: R$");
+						vMovimento = entrada.nextFloat();
+						est1.debitado(vMovimento);
+						System.out.println("Saldo atualizado: R$" + est1.getSaldo());
+					
+						break;
+						
+					default:
+						
+						System.out.println("Comando inválido.");
+						break;
+					}
+										
+					Thread.sleep(500);
+					
+					if(i == 10) {//IF PARA OPÇÃO CONTINUAR NÃO APAREÇA UMA VEZ A MAIS 
+						break;
+					}
+					
+					//PERGUNTA SE É PARA CONTINUAR COM AS MOVIMENTAÇÕES
+
+					System.out.print("\nContinuar S/N: ");
+					continuar = entrada.next();
+					 
+					 //Verificação para continuar ou não as movimentações
+					if (continuar.equalsIgnoreCase("N")) {
+						 break;
+					
+					 }
+				}
+				
+				System.out.println("\nAgradecemos a preferência!");
+		
 			break;
 			case 6:
 				System.out.println("\nDigitalBank G4");
@@ -154,8 +405,14 @@ public class TESTE {
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
 			break;
 			default:
+<<<<<<< HEAD
 				System.out.println();
 				System.out.println("OPÇÃO INVALIDA! TENTE NOVAMENTE");
+=======
+				
+				Thread.sleep(500);
+				System.out.println("Comando Inválido! Tente novamente.");
+>>>>>>> 7537527e6ffb897e73454c9defb4940ee22acd72
 		} 
 		} while (conta < 1 || conta > 6);
 		
