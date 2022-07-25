@@ -7,6 +7,7 @@ public class TESTE {
 	public static void main(String[] args) throws InterruptedException {
 		
 		//Autor Thiago Da Silva Barbosa Camelo.
+		//Felipe Morilho de Castro
 		
 		Scanner entrada = new Scanner(System.in);
 		
@@ -34,8 +35,6 @@ public class TESTE {
 		Thread.sleep(500);
 		
 		
-		//Autor Thiago Da Silva Barbosa Camelo.
-		
 		switch (conta) {
 		
 		//Autor Thiago Da Silva Barbosa Camelo.
@@ -52,22 +51,12 @@ public class TESTE {
 				
 				
 				System.out.print("Digite o numero: ");
-<<<<<<< HEAD
-				int numero = entrada.nextInt();
-				
-				
-				System.out.print("Digite seu cpf: ");
-				String cpf = entrada.next();
-=======
 				numero = entrada.nextInt();
-				
-			
+
 				System.out.print("Digite seu cpf: ");
 				cpf = entrada.next();
-				
-				
->>>>>>> 7537527e6ffb897e73454c9defb4940ee22acd72
 				ContaPoupanca cp1 = new ContaPoupanca(numero, cpf);
+				
 				do
 				if (cp1.getCpf().length() != 11) {
 					System.out.println("\nCPF INVALIDO! TENTE NOVAMENTE \n");
@@ -76,6 +65,7 @@ public class TESTE {
 				} while(cp1.getCpf().length() != 11);
 				
 				Thread.sleep(500);
+				
 				
 				System.out.print("Informe a Data: ");
 				int data = entrada.nextInt();
@@ -115,6 +105,9 @@ public class TESTE {
 						cp1.debitado(vMovimento);
 						System.out.println(cp1.getSaldo());	
 					} else {
+						
+						System.out.println("Operação invalida!");
+						System.out.println();
 						i--;
 					}
 					
@@ -133,11 +126,12 @@ public class TESTE {
 					if (continuar.equalsIgnoreCase("N")) {
 						 break;
 					 
-					 }
+					 }	
 				} 
-				System.out.println(cp1.getSaldo());
-			
-				
+				System.out.println("\nDigitalBank G4");
+				Thread.sleep(500);
+				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
+				System.out.println("\nAgradecemos a preferência!");
 		
 			break;
 			
@@ -206,7 +200,7 @@ public class TESTE {
 						do {
 						System.out.println("Qual valor deseja pegar de empréstimo?");
 						valorEmprestimoEmpresa = entrada.nextFloat();
-						if (valorEmprestimoEmpresa <= 10000 && valorEmprestimoEmpresa < valorDisponivelEmpresa) {
+						if (valorEmprestimoEmpresa <= 10000 && valorEmprestimoEmpresa <= valorDisponivelEmpresa) {
 						valorDisponivelEmpresa -= valorEmprestimoEmpresa;
 						ce1.pedirEmprestimo(valorEmprestimoEmpresa);
 						}else {
@@ -405,14 +399,14 @@ public class TESTE {
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
 			break;
 			default:
-<<<<<<< HEAD
+
 				System.out.println();
 				System.out.println("OPÇÃO INVALIDA! TENTE NOVAMENTE");
-=======
+
 				
 				Thread.sleep(500);
 				System.out.println("Comando Inválido! Tente novamente.");
->>>>>>> 7537527e6ffb897e73454c9defb4940ee22acd72
+
 		} 
 		} while (conta < 1 || conta > 6);
 		
