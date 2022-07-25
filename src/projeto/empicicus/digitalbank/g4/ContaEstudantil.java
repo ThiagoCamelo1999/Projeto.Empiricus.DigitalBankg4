@@ -21,13 +21,11 @@ public class ContaEstudantil extends Conta {
 			System.out.println("PARABÉNS!!! Você acaba de pegar R$" + valorSolicitado + " emprestados.");
 			System.out.println("Seu novo saldo: " + this.getSaldo());
 			if (limiteEstudantil > 0) {
-				System.out.println("Você ainda tem R$" + limiteEstudantil + " de crédito para você.");
+				System.out.println("Você ainda tem R$" + limiteEstudantil + " de crédito para você. \n");
 			}else {
-				System.out.println("Você utilizou todos seu limite de empréstimo estudantil. Aproveite com sabedoria!");
+				System.out.println("Você utilizou todos seu limite de empréstimo estudantil. Aproveite com sabedoria! \n");
 			}
-		} else {
-			System.out.println("Valor não liberado. Você tem um crédito de até R$5.000,00");
-		}
+		} 
 	}
 
 	
