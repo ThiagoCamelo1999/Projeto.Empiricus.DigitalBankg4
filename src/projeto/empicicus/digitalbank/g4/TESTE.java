@@ -51,10 +51,17 @@ public class TESTE {
 				
 				System.out.print("Digite o numero: ");
 				int numero = entrada.nextInt();
+				
+				
 				System.out.print("Digite seu cpf: ");
 				String cpf = entrada.next();
-				
 				ContaPoupanca cp1 = new ContaPoupanca(numero, cpf);
+				do
+				if (cp1.getCpf().length() != 11) {
+					System.out.println("\nCPF INVALIDO! TENTE NOVAMENTE \n");
+					System.out.print("Digite seu cpf: ");
+					cp1.setCpf(entrada.next());				
+				} while(cp1.getCpf().length() != 11);
 				
 				Thread.sleep(500);
 				
@@ -95,6 +102,8 @@ public class TESTE {
 						vMovimento = entrada.nextFloat();
 						cp1.debitado(vMovimento);
 						System.out.println(cp1.getSaldo());	
+					} else {
+						i--;
 					}
 					
 					Thread.sleep(500);
@@ -145,9 +154,8 @@ public class TESTE {
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
 			break;
 			default:
-				System.out.println("\nDigitalBank G4");
-				Thread.sleep(500);
-				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
+				System.out.println();
+				System.out.println("OPÇÃO INVALIDA! TENTE NOVAMENTE");
 		} 
 		} while (conta < 1 || conta > 6);
 		
