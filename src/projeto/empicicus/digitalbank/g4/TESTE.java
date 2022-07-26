@@ -67,6 +67,9 @@ public class TESTE {
 				Thread.sleep(500);
 				
 				
+					Thread.sleep(500);
+				
+				
 				System.out.print("Informe a Data: ");
 				int data = entrada.nextInt();
 				if(data == cp1.getDiaAniversarioPoupanca()) {
