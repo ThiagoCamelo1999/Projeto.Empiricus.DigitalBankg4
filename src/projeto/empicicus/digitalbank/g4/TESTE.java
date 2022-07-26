@@ -2,12 +2,14 @@ package projeto.empicicus.digitalbank.g4;
 
 import java.util.Scanner;
 
+		//Autor Thiago Da Silva Barbosa Camelo.
+		//Felipe Morilho de Castro
+
 public class TESTE {
 
 	public static void main(String[] args) throws InterruptedException {
 		
-		//Autor Thiago Da Silva Barbosa Camelo.
-		//Felipe Morilho de Castro
+		
 		
 		Scanner entrada = new Scanner(System.in);
 		
@@ -16,6 +18,10 @@ public class TESTE {
 		String cpf, continuar, emprestimo;
 		float vMovimento;
 		
+		
+		
+		
+		//Autor Thiago Da Silva Barbosa Camelo.
 		
 		do { //PARA REPETIR A OPÇÃO DE ESCOLHA ENQUANTO NÃO DIGITAR UM VALOR VALIDO
 			System.out.println("\nDigitalBank G4");
@@ -39,7 +45,21 @@ public class TESTE {
 		
 		//Autor Thiago Da Silva Barbosa Camelo.
 		
+			//CONTA POUPANÇA
 			case 1:
+				
+				ContaPoupanca cp1 = new ContaPoupanca(0, null);
+				ContaPoupanca cp2 = new ContaPoupanca(0, null);
+				
+				
+				int[] nconta = new int[2];
+				nconta[0] = 9999; 
+				nconta[1] = 2001;
+				String cpfConta[] = new String[2];
+				cpfConta[0] = "11111111111";
+				cpfConta[1] = "22222222222";
+				
+				
 				
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
@@ -50,38 +70,113 @@ public class TESTE {
 				Thread.sleep(500);
 				
 				
-				System.out.print("Digite o numero: ");
+				System.out.print("Digite o numero da conta: ");
 				numero = entrada.nextInt();
-
 				System.out.print("Digite seu cpf: ");
 				cpf = entrada.next();
-				ContaPoupanca cp1 = new ContaPoupanca(numero, cpf);
 				
-				do
-				if (cp1.getCpf().length() != 11) {
-					System.out.println("\nCPF INVALIDO! TENTE NOVAMENTE \n");
-					System.out.print("Digite seu cpf: ");
-					cp1.setCpf(entrada.next());				
-				} while(cp1.getCpf().length() != 11);
-				
-				Thread.sleep(500);
-				
-				
+					
+				if(numero == nconta[0] && cpf.equals(cpfConta[0])) {
+				cp1.setNumero(nconta[0]);
+				cp1.setCpf(cpfConta[0]);
+				cp1.setAtivo(true);
+					
+				} else if (numero == nconta[1] && cpf.equals(cpfConta[1])) {
+					cp2.setNumero(numero);;
+					cp1.setCpf(cpfConta[1]);
+					cp2.setAtivo(true);
+		
+					} else {
+						System.out.println("Conta inativa");
+						break;
+					}
+
 					Thread.sleep(500);
 				
-				
-				System.out.print("Informe a Data: ");
-				int data = entrada.nextInt();
-				if(data == cp1.getDiaAniversarioPoupanca()) {
+					if(cp1.isAtivo() == true) {
+						
+						System.out.println("Conta: " + cp1.getNumero());
+						System.out.println("Cpf: " + cp1.getCpf());
+						System.out.print("Informe a Data: ");
+						int data = entrada.nextInt();
+					
+						if(data == cp1.getDiaAniversarioPoupanca()) {
+
+							Thread.sleep(500);
+							System.out.print("Saldo Atual: R$ " + cp1.getSaldo()+ " - ");
+							cp1.correcao(data);
+					
+					
+						} else {
+							System.out.print("Saldo Atual: R$ " + cp1.getSaldo()+ "  ");
+							cp1.correcao(data);
+						}  
+					
+					//VARIAVEIS USADAS LOCALMENTE
+					continuar = null;
+					vMovimento = 0;
+							
+					Thread.sleep(500);
+							
+					//LAÇO PARA REPETIR A MOVIMENTAÇÃO 10 VEZES 
+					for(int i = 1; i <= 10; i++) {
+					System.out.print("MOVIMENTO - D-debito ou C-crédito: ");
+					String tipoMV = entrada.next();
+								
+					//VERIFICA SE O TIPO DA MOVIMENTAÇÃO É CREDITO.
+					if(tipoMV.equalsIgnoreCase("C")) { 
+						System.out.print("Valor movimento: R$ ");
+						vMovimento = entrada.nextFloat();
+						cp1.credito(vMovimento);
+						System.out.println(cp1.getSaldo());
+									
+								//VERIFICA SE O TIPO DA MOVIMENTAÇÃO É DEBITO.
+					} else if(tipoMV.equalsIgnoreCase("D")) {
+						System.out.print("Valor movimento: R$ ");
+						vMovimento = entrada.nextFloat();
+						cp1.debitado(vMovimento);
+						System.out.println(cp1.getSaldo());	
+						} else {
+							System.out.println("Operação invalida!");
+							System.out.println();
+							i--;//PARA PODER FAZER MAIS UMA MOVIMENTAÇÃO CASO SEJA DIGITADA OPERAÇÃO INVALIDA
+							}
 					
 					Thread.sleep(500);
+								
+					if(i == 10) {//IF PARA OPÇÃO CONTINUAR NÃO APAREÇA UMA VEZ A MAIS 
+						break;
+					}
+								
+					//PERGUNTA SE É PARA CONTINUAR COM AS MOVIMENTAÇÕES
+					System.out.println("\n");
+					System.out.print("Continuar S/N: ");
+					continuar = entrada.next();
+								 
+					 //VERIFICAÇÃO, SE RESPOSTA DO USUARIO IGUAL A N/n IRA PARA AS MOVIMENTAÇÕES E CONTINUAR COM CODIGO
+					if (continuar.equalsIgnoreCase("N")) {
+						break;
+					}	
+					}
+							
+				} else if (cp2.isAtivo() == true) {
+					System.out.println("Conta: " + cp1.getNumero());
+					System.out.println("Cpf: " + cp1.getCpf());
+					System.out.print("Informe a Data: ");
+					int data = entrada.nextInt();
 					
+					if(data == cp2.getDiaAniversarioPoupanca()) {
+					
+					Thread.sleep(500);
 					System.out.print("Saldo Atual: R$ " + cp1.getSaldo()+ " - ");
-					cp1.correcao(data);
-				} else {
-					System.out.print("Saldo Atual: R$ " + cp1.getSaldo()+ "  ");
-					cp1.correcao(data);
-				}
+					cp2.correcao(data);
+					
+					} else {
+						System.out.print("Saldo Atual: R$ " + cp1.getSaldo()+ "  ");
+						cp2.correcao(data);
+					}
+				
+				
 				
 				//VARIAVEIS USADAS LOCALMENTE
 				continuar = null;
@@ -98,22 +193,22 @@ public class TESTE {
 					if(tipoMV.equalsIgnoreCase("C")) { 
 						System.out.print("Valor movimento: R$ ");
 						vMovimento = entrada.nextFloat();
-						cp1.credito(vMovimento);
-						System.out.println(cp1.getSaldo());
+						cp2.credito(vMovimento);
+						System.out.println(cp2.getSaldo());
 						
 					//VERIFICA SE O TIPO DA MOVIMENTAÇÃO É DEBITO.
 					} else if(tipoMV.equalsIgnoreCase("D")) {
 						System.out.print("Valor movimento: R$ ");
 						vMovimento = entrada.nextFloat();
-						cp1.debitado(vMovimento);
-						System.out.println(cp1.getSaldo());	
-					} else {
+						cp2.debitado(vMovimento);
+						System.out.println(cp2.getSaldo());	
 						
+						} else {
 						System.out.println("Operação invalida!");
 						System.out.println();
-						i--;
+						i--;//PARA PODER FAZER MAIS UMA MOVIMENTAÇÃO CASO SEJA DIGITADA OPERAÇÃO INVALIDA
 					}
-					
+				
 					Thread.sleep(500);
 					
 					if(i == 10) {//IF PARA OPÇÃO CONTINUAR NÃO APAREÇA UMA VEZ A MAIS 
@@ -123,14 +218,15 @@ public class TESTE {
 					//PERGUNTA SE É PARA CONTINUAR COM AS MOVIMENTAÇÕES
 					System.out.println("\n");
 					System.out.print("Continuar S/N: ");
-					 continuar = entrada.next();
+					continuar = entrada.next();
 					 
 					 //VERIFICAÇÃO, SE RESPOSTA DO USUARIO IGUAL A N/n IRA PARA AS MOVIMENTAÇÕES E CONTINUAR COM CODIGO
 					if (continuar.equalsIgnoreCase("N")) {
 						 break;
-					 
-					 }	
+					}
+				}	
 				} 
+					
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
@@ -139,13 +235,15 @@ public class TESTE {
 			break;
 			
 			
+			
+			//CONTA CORRENTE
 			case 2:
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
 			break;
 			
-			
+			//CONTA ESPECIAL
 			case 3:
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
