@@ -126,7 +126,7 @@ public class TESTE {
 								
 					//VERIFICA SE O TIPO DA MOVIMENTAÇÃO É CREDITO.
 					if(tipoMV.equalsIgnoreCase("C")) { 
-						System.out.print("Valor movimento: R$");
+						System.out.print("\nValor movimento: R$");
 						vMovimento = entrada.nextFloat();
 						cp1.credito(vMovimento);
 						System.out.printf("\nSaldo atualizado: R$%.2f" , cp1.getSaldo());
@@ -153,7 +153,7 @@ public class TESTE {
 								
 					//PERGUNTA SE É PARA CONTINUAR COM AS MOVIMENTAÇÕES
 					System.out.println("\n");
-					System.out.print("Continuar: \n S - Sim \nN - Não ");
+					System.out.print("Continuar: \nS - Sim \nN - Não ");
 					continuar = entrada.next();
 								 
 					 //VERIFICAÇÃO, SE RESPOSTA DO USUARIO IGUAL A N/n IRA PARA AS MOVIMENTAÇÕES E CONTINUAR COM CODIGO
@@ -173,7 +173,7 @@ public class TESTE {
 					}
 					for (int j = 0; j <= contador; j++) {
 						
-						System.out.println(j+1 + "ª movimentação: R$" + movimentacoesP[j]);
+						System.out.printf("\n" + j+1 + "ª movimentação: R$%.2f", movimentacoesP[j], "\n");
 					}
 							
 				} else if (cp2.isAtivo() == true) {
@@ -253,14 +253,14 @@ public class TESTE {
 					System.out.println();
 					contador++;
 				}
+				for (int j = 0; j <= contador; j++) {
+						
+						System.out.printf("\n" + j+1 + "ª movimentação: R$%.2f", movimentacoesP[j] , "\n" );
 				
 					
 				}
-					for (int j = 0; j <= contador; j++) {
-						
-						System.out.println(j+1 + "ª movimentação: R$" + movimentacoesP[j]);
-				} 
-					
+					} 
+				System.out.println();	
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
@@ -273,6 +273,7 @@ public class TESTE {
 			
 			//CONTA CORRENTE
 			case 2:
+				
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
@@ -282,6 +283,7 @@ public class TESTE {
 			
 			//CONTA ESPECIAL
 			case 3:
+				
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
