@@ -28,6 +28,17 @@ public class ContaEstudantil extends Conta {
 		} 
 	}
 
+	private void debito(float valor) {//Função débito. Retira o valor solicitado do saldo, acrescido da taxa de movimentação
+		if(this.getSaldo() >= valor) {
+		this.setSaldo(this.getSaldo() - (valor + 0.7f));
+		} else {
+			System.out.println("Impossivel realizar operação de debito, valor insuficiente!");//ERRO PARA QUE SALDO NÃO POSSA FICAR NEGATIVO DURANTE AS 10 MOVIMENTAÇÕES
+		}
+	}
+	
+	public void debitado(float valor) { 
+		this.debito(valor);
+	}
 	
 	//Getters & Setters
 	public float getLimiteEstudantil() {
