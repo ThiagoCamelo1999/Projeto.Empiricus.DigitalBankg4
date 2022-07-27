@@ -7,13 +7,17 @@ public class ContaEmpresa extends Conta {
 
 	//Atributos
 	private float emprestimoEmpresa = 10000;
+	private String cnpj;
 	
 	
 	//Construtor
-	public ContaEmpresa(int numero, String cpf) {
-		super(numero, cpf);
+	public ContaEmpresa(int numero, String cnpj) {
+		super(numero, cnpj);
+		this.cnpj = cnpj;
 	}
 	
+	
+
 	//Métodos
 	public void pedirEmprestimo(float valorEmprestimo) {
 		
@@ -33,6 +37,17 @@ public class ContaEmpresa extends Conta {
 		
 	}
 
+	private void debito(float valor) {//RETIRA O VALOR DO SALDO CASO TENHA USADO A FUNÇÃO DE DEBITO
+		if(this.getSaldo() >= valor) {
+		this.setSaldo(this.getSaldo() - (valor + 2.3f));
+		} else {
+			System.out.println("Impossivel realizar operação de debito, valor insuficiente!");//ERRO PARA QUE SALDO NÃO POSSA FICAR NEGATIVO DURANTE AS 10 MOVIMENTAÇÕES
+		}
+	}
+	
+	public void debitado(float valor) { 
+		this.debito(valor);
+	}
 	
 	//Getters & Setters
 	public float getEmprestimoEmpresa() {
@@ -43,6 +58,13 @@ public class ContaEmpresa extends Conta {
 		this.emprestimoEmpresa = emprestimoEmpresa;
 	}
 	
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
 	
 	
 }

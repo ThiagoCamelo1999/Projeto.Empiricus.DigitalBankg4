@@ -14,7 +14,7 @@ public class TESTE {
 		Scanner entrada = new Scanner(System.in);
 		
 		//VARIAVEIS
-		int conta, numero;
+		int conta, numero, contador = 0;
 		String cpf, continuar, emprestimo;
 		float vMovimento;
 		
@@ -256,10 +256,35 @@ public class TESTE {
 				//Felipe Morilho de Castro
 				
 				float valorEmprestimoEmpresa, valorDisponivelEmpresa = 10000;
+				String cnpj;
+				
+				float[] movimentacoes = new float [10];
+				
+				ContaEmpresa ce1 =new ContaEmpresa(0, null);
+				ContaEmpresa ce2 =new ContaEmpresa(0, null);
+				ContaEmpresa ce3 =new ContaEmpresa(0, null);
+				ContaEmpresa ce4 =new ContaEmpresa(0, null);
+				ContaEmpresa ce5 =new ContaEmpresa(0, null);
+				ContaEmpresa ce6 =new ContaEmpresa(0, null); //Variável de suporte para contas ativas.
+				
+				
+				int[] numContaEmp = new int[5];
+				String[] cnpjContaEmp = new String[5];
+				numContaEmp[0] = 1001;				
+				numContaEmp[1] = 2002;				
+				numContaEmp[2] = 3003;				
+				numContaEmp[3] = 4004;				
+				numContaEmp[4] = 5005;
+				cnpjContaEmp[0] = "11111111111111";
+				cnpjContaEmp[1] = "22222222222222";
+				cnpjContaEmp[2] = "33333333333333";
+				cnpjContaEmp[3] = "44444444444444";
+				cnpjContaEmp[4] = "55555555555555";
+				
 				
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
-				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
+				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa.");
 				
 				
 				Thread.sleep(500);
@@ -270,15 +295,60 @@ public class TESTE {
 				System.out.print("Digite o numero: ");
 				numero = entrada.nextInt();
 				
+				
 				do{
-					System.out.print("Digite seu CPF: ");
-					cpf = entrada.next();
-				}while (cpf.length() != 11);
+					System.out.print("Digite seu CNPJ: ");
+					cnpj = entrada.next();
+				}while (cnpj.length() != 14);
 
-				ContaEmpresa ce1 = new ContaEmpresa(numero, cpf);
+				for (int i = 0; i < numContaEmp.length; i++ ) {
+					
+					
+					if (numero == numContaEmp[i] && cnpj.equals(cnpjContaEmp[i])) {
+						if (i == 0) {
+
+							ce1.setNumero(numContaEmp[i]);
+							ce1.setCpf(cnpjContaEmp[i]);
+							ce6.setAtivo(true);
+							break;
+						}
+						if (i == 1) {
+							
+							ce2.setNumero(numContaEmp[i]);
+							ce2.setCpf(cnpjContaEmp[i]);
+							ce6.setAtivo(true);
+							break;
+						}
+						if (i == 2) {
+							
+							ce3.setNumero(numContaEmp[i]);
+							ce3.setCpf(cnpjContaEmp[i]);
+							ce6.setAtivo(true);
+							break;
+						}
+						if (i == 3) {
+							
+							ce4.setNumero(numContaEmp[i]);
+							ce4.setCpf(cnpjContaEmp[i]);
+							ce6.setAtivo(true);
+							break;
+						}
+						if (i == 4) {
+							
+							ce5.setNumero(numContaEmp[i]);
+							ce5.setCpf(cnpjContaEmp[i]);
+							ce6.setAtivo(true);
+							break;
+						}
+						
+					} else if (i == 4 && ce6.isAtivo() == false){
+						System.out.println("Conta Inativa.");
+					}
+				}
 				
 				Thread.sleep(500);
-					
+				
+				if (ce6.isAtivo() == true) {
 			
 				continuar = null;			
 				
@@ -332,6 +402,8 @@ public class TESTE {
 						ce1.credito(vMovimento);
 						System.out.println("Saldo atualizado: R$" + ce1.getSaldo());
 						
+						movimentacoes[i-1] = vMovimento;
+						
 						
 						break;
 						
@@ -342,11 +414,14 @@ public class TESTE {
 						ce1.debitado(vMovimento);
 						System.out.println("Saldo atualizado: R$" + ce1.getSaldo());
 					
+						movimentacoes[i-1] = -vMovimento;
+						
 						break;
 					
 					default:
 						
 						System.out.println("Comando inválido.");
+						i--;
 						break;
 					}
 										
@@ -358,16 +433,26 @@ public class TESTE {
 					
 					//PERGUNTA SE É PARA CONTINUAR COM AS MOVIMENTAÇÕES
 
-					System.out.print("\nContinuar S/N: ");
+					System.out.print("\nContinuar S - Sim / N - Não: ");
 					continuar = entrada.next();
-					 
+					
+										
 					 //Verificação para continuar ou não as movimentações
 					if (continuar.equalsIgnoreCase("N")) {
 						 break;
 					 
 					 }
-				}				
-		
+					contador++;
+				}
+				for (int i = 0; i <= contador; i++) {
+					
+					System.out.println(i+1 + "ª movimentação: R$" + movimentacoes[i]);
+				}
+				}
+				System.out.println("\nDigitalBank G4");
+				Thread.sleep(500);
+				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
+				Thread.sleep(500);
 				System.out.println("\nAgradecemos a preferência!");
 
 			break;
@@ -375,8 +460,30 @@ public class TESTE {
 				
 				//Felipe Morilho de Castro
 				
-				float valorDisponivelEstudantil = 5000;
-				float valorEmprestimoEstudantil;
+				float valorDisponivelEstudantil = 5000, valorEmprestimoEstudantil;
+								
+				float[] movimentacoesEst = new float [10];
+				
+				ContaEstudantil est1 =new ContaEstudantil(0, null);
+				ContaEstudantil est2 =new ContaEstudantil(0, null);
+				ContaEstudantil est3 =new ContaEstudantil(0, null);
+				ContaEstudantil est4 =new ContaEstudantil(0, null);
+				ContaEstudantil est5 =new ContaEstudantil(0, null);
+				ContaEstudantil est6 =new ContaEstudantil(0, null);
+				
+				
+				int[] numContaEst = new int[5];
+				String[] cpfContaEst = new String[5];
+				numContaEst[0] = 1001;				
+				numContaEst[1] = 2002;				
+				numContaEst[2] = 3003;				
+				numContaEst[3] = 4004;				
+				numContaEst[4] = 5005;
+				cpfContaEst[0] = "11111111111";
+				cpfContaEst[1] = "22222222222";
+				cpfContaEst[2] = "33333333333";
+				cpfContaEst[3] = "44444444444";
+				cpfContaEst[4] = "55555555555";
 				
 				System.out.println("DigitalBank G4");
 				Thread.sleep(500);
@@ -394,10 +501,54 @@ public class TESTE {
 					cpf = entrada.next();
 				}while (cpf.length() != 11);
 
-				ContaEstudantil est1 = new ContaEstudantil(numero, cpf);
+				for (int i = 0; i < numContaEst.length; i++ ) {
+					
+					
+					if (numero == numContaEst[i] && cpf.equals(cpfContaEst[i])) {
+						if (i == 0) {
+
+							est1.setNumero(numContaEst[i]);
+							est1.setCpf(cpfContaEst[i]);
+							est6.setAtivo(true);
+							break;
+						}
+						if (i == 1) {
+							
+							est2.setNumero(numContaEst[i]);
+							est2.setCpf(cpfContaEst[i]);
+							est6.setAtivo(true);
+							break;
+						}
+						if (i == 2) {
+							
+							est3.setNumero(numContaEst[i]);
+							est3.setCpf(cpfContaEst[i]);
+							est6.setAtivo(true);
+							break;
+						}
+						if (i == 3) {
+							
+							est4.setNumero(numContaEst[i]);
+							est4.setCpf(cpfContaEst[i]);
+							est6.setAtivo(true);
+							break;
+						}
+						if (i == 4) {
+							
+							est5.setNumero(numContaEst[i]);
+							est5.setCpf(cpfContaEst[i]);
+							est6.setAtivo(true);
+							break;
+						}
+						
+					} else if (i == 4 && est6.isAtivo() == false){
+						System.out.println("Conta Inativa.");
+					}
+				}
 				
 				Thread.sleep(500);
-					
+				
+				if (est6.isAtivo() == true) {
 			
 				continuar = null;
 				
@@ -431,6 +582,7 @@ public class TESTE {
 						}
 						} while (valorEmprestimoEstudantil > 5000);
 						
+					
 					case "n","N":
 						break;
 					
@@ -454,6 +606,8 @@ public class TESTE {
 						est1.credito(vMovimento);
 						System.out.println("Saldo atualizado: R$" + est1.getSaldo());
 						
+						movimentacoesEst[i-1] = vMovimento;
+
 						
 						break;
 						
@@ -465,11 +619,16 @@ public class TESTE {
 						est1.debitado(vMovimento);
 						System.out.println("Saldo atualizado: R$" + est1.getSaldo());
 					
+						movimentacoesEst[i-1] = -vMovimento;
+
 						break;
 						
 					default:
 						
 						System.out.println("Comando inválido.");
+						
+						i--; 
+						
 						break;
 					}
 										
@@ -481,7 +640,7 @@ public class TESTE {
 					
 					//PERGUNTA SE É PARA CONTINUAR COM AS MOVIMENTAÇÕES
 
-					System.out.print("\nContinuar S/N: ");
+					System.out.print("\nContinuar S - Sim / N - Não: ");
 					continuar = entrada.next();
 					 
 					 //Verificação para continuar ou não as movimentações
@@ -489,9 +648,24 @@ public class TESTE {
 						 break;
 					
 					 }
+					contador++;
+					
 				}
 				
-				System.out.println("\nAgradecemos a preferência!");
+				System.out.println();
+				
+					for (int i = 0; i <= contador; i++) {
+						
+						System.out.println(i+1 + "ª movimentação: R$" + movimentacoesEst[i]);
+						
+					}
+					}
+					Thread.sleep(500);
+					System.out.println("\nDigitalBank G4");
+					Thread.sleep(500);
+					System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
+					Thread.sleep(500);
+					System.out.println("\nAgradecemos a preferência!");
 		
 			break;
 			case 6:
@@ -513,13 +687,7 @@ public class TESTE {
 		
 
 		
-		
-		
-		
-		
-		
-		
-		
+				
 		
 		//FECHAMENDO DO SCANNER
 		entrada.close();
