@@ -323,12 +323,12 @@ public class TESTE {
 				Thread.sleep(500);
 				
 				
-				System.out.print("Digite o numero: ");
+				System.out.printf("Digite o numero: ");
 				numero = entrada.nextInt();
 				
 				
 				do{
-					System.out.print("Digite seu CNPJ: ");
+					System.out.printf("Digite seu CNPJ: ");
 					cnpj = entrada.next();
 				}while (cnpj.length() != 14);
 
@@ -390,9 +390,8 @@ public class TESTE {
 					
 					//PERGUNTA SOBRE O EMPRÉSTIMO
 					if (valorDisponivelEmpresa > 0) {
-					System.out.println("\n");
-					System.out.println("Você tem R$" + valorDisponivelEmpresa + " aprovados para empréstimo. Vamos dar um upgrade na sua empresa?");	
-					System.out.println("\nDigite: \n S - Sim  \n N - Não");
+					System.out.println("\nVocê tem R$" + valorDisponivelEmpresa + " aprovados para empréstimo. Vamos dar um upgrade na sua empresa?");	
+					System.out.printf("\nDigite: S - Sim / N - Não: ");
 					emprestimo = entrada.next();
 					
 					switch (emprestimo){
@@ -400,13 +399,13 @@ public class TESTE {
 					case "s", "S":	
 					//if (emprestimo.equalsIgnoreCase("S")) {
 						do {
-						System.out.println("\nQual valor deseja pegar de empréstimo?");
+						System.out.println("\nQual valor deseja pegar de empréstimo? ");
 						valorEmprestimoEmpresa = entrada.nextFloat();
 						if (valorEmprestimoEmpresa <= 10000 && valorEmprestimoEmpresa <= valorDisponivelEmpresa) {
 						valorDisponivelEmpresa -= valorEmprestimoEmpresa;
 						ce1.pedirEmprestimo(valorEmprestimoEmpresa);
 						}else {
-							System.out.println("\nValor não aprovado. Tente um novo valor abaixo de R$" + valorDisponivelEmpresa);
+							System.out.printf("\nValor não aprovado. Tente um novo valor abaixo de R$%.2f" , valorDisponivelEmpresa);
 						}
 						} while (valorEmprestimoEmpresa > 10000);
 					
@@ -420,7 +419,7 @@ public class TESTE {
 						System.out.println("\nSeu limite de crédito esgotou. Aproveite o empréstimo já realizado!\n");
 					}
 					
-					System.out.print("MOVIMENTO \nD - Debito \nC - Crédito: ");
+					System.out.printf("\nMovimento: D - Debito / C - Crédito: ");
 					String tipoMV = entrada.next();
 					
 					//VERIFICA SE O TIPO DA MOVIMENTAÇÃO É CREDITO OU DÉBITO.
@@ -428,10 +427,10 @@ public class TESTE {
 					
 					case "C","c": 
 						
-						System.out.print("\nValor movimento: R$");
+						System.out.printf("\nValor movimento: R$");
 						vMovimento = entrada.nextFloat();
 						ce1.credito(vMovimento);
-						System.out.printf("\nSaldo atualizado: R$%.2" , ce1.getSaldo());
+						System.out.printf("\nSaldo atualizado: R$%.2f" , ce1.getSaldo());
 						
 						movimentacoes[i-1] = vMovimento;
 						
@@ -440,7 +439,7 @@ public class TESTE {
 						
 					case "D","d":
 						
-						System.out.print("\nValor movimento: R$");
+						System.out.printf("\nValor movimento: R$");
 						vMovimento = entrada.nextFloat();
 						ce1.debitado(vMovimento);
 						System.out.printf("\nSaldo atualizado: R$%.2f" , ce1.getSaldo());
@@ -463,8 +462,8 @@ public class TESTE {
 					}
 					
 					//PERGUNTA SE É PARA CONTINUAR COM AS MOVIMENTAÇÕES
-
-					System.out.print("\nContinuar S - Sim / N - Não: ");
+					System.out.println();
+					System.out.printf("\nContinuar S - Sim / N - Não: ");
 					continuar = entrada.next();
 					
 										
@@ -477,9 +476,12 @@ public class TESTE {
 				}
 				for (int i = 0; i <= contador; i++) {
 					
-					System.out.println(i+1 + "ª movimentação: R$" + movimentacoes[i]);
+					System.out.printf("\n" + (i+1) + "ª movimentação: R$%.2f", movimentacoes[i] , "\n" );
+
 				}
 				}
+				System.out.println();
+				Thread.sleep(500);
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
@@ -515,11 +517,11 @@ public class TESTE {
 				System.out.println("\nCONTA ESTUDANTIL\n");
 				Thread.sleep(500);
 				
-				System.out.print("Digite o numero: ");
+				System.out.printf("Digite o numero: ");
 				numero = entrada.nextInt();
 				
 				do{
-					System.out.print("Digite seu CPF: ");
+					System.out.printf("Digite seu CPF: ");
 					cpf = entrada.next();
 				}while (cpf.length() != 11);
 
@@ -561,8 +563,8 @@ public class TESTE {
 							est5.setCpf(cpfContaEst[i]);
 							est6.setAtivo(true);
 							break;
-						}
 						
+						}
 					} else if (i == 4 && est6.isAtivo() == false){
 						System.out.println("\nConta Inativa.");
 					}
@@ -584,7 +586,7 @@ public class TESTE {
 					if (valorDisponivelEstudantil > 0 ) {
 						
 					System.out.println("\nVocê tem R$" + valorDisponivelEstudantil + " aprovados para empréstimo. Vamos aproveitar?");	
-					System.out.println("Digite: \nS - Sim  \nN - Não");
+					System.out.printf("\nDigite: S - Sim / N - Não: ");
 					emprestimo = entrada.next();
 					
 					
@@ -594,13 +596,13 @@ public class TESTE {
 					
 					//if (emprestimo.equalsIgnoreCase("S")) {
 						do {
-						System.out.println("\nQual valor deseja pegar de empréstimo?");
+						System.out.printf("\nQual valor deseja pegar de empréstimo? ");
 						valorEmprestimoEstudantil = entrada.nextFloat();
 						if (valorEmprestimoEstudantil <= 5000 && valorEmprestimoEstudantil <= valorDisponivelEstudantil) {
 						valorDisponivelEstudantil -=  valorEmprestimoEstudantil;
 						est1.usarEstudantil(valorEmprestimoEstudantil);
 						}else {
-							System.out.println("\nValor não aprovado. Tente um novo valor abaixo de R$" + valorDisponivelEstudantil);
+							System.out.printf("\nValor não aprovado. Tente um novo valor abaixo de R$%.2f" , valorDisponivelEstudantil);
 						}
 						} while (valorEmprestimoEstudantil > 5000);
 						
@@ -609,13 +611,12 @@ public class TESTE {
 						break;
 					
 					default:
-						System.out.println("\nComando Inválido.\n");
+						System.out.println("\nComando Inválido.");
 					}
 					} else {
-						System.out.println("\nSeu limite de crédito esgotou. Aproveite o empréstimo já realizado!\n");
+						System.out.println("Seu limite de crédito esgotou. Aproveite o empréstimo já realizado!\n");
 					}
-					
-					System.out.print("MOVIMENTO \nD - Debito  \nC - Crédito: ");
+					System.out.printf("\nMovimento: D - Debito / C - Crédito: ");
 					String tipoMV = entrada.next();
 					
 					//VERIFICA SE O TIPO DA MOVIMENTAÇÃO É CREDITO.
@@ -623,7 +624,7 @@ public class TESTE {
 					
 					case "C","c": 
 						
-						System.out.print("\nValor movimento: R$");
+						System.out.printf("\nValor movimento: R$");
 						vMovimento = entrada.nextFloat();
 						est1.credito(vMovimento);
 						System.out.printf("\nSaldo atualizado: R$%.2f" , est1.getSaldo());
@@ -636,7 +637,7 @@ public class TESTE {
 					
 					case "D","d":
 						
-						System.out.print("\nValor movimento: R$");
+						System.out.printf("\nValor movimento: R$");
 						vMovimento = entrada.nextFloat();
 						est1.debitado(vMovimento);
 						System.out.printf("\nSaldo atualizado: R$%.2f" , est1.getSaldo());
@@ -661,8 +662,8 @@ public class TESTE {
 					}
 					
 					//PERGUNTA SE É PARA CONTINUAR COM AS MOVIMENTAÇÕES
-
-					System.out.print("\nContinuar S - Sim / N - Não: ");
+					System.out.println();
+					System.out.printf("\nContinuar S - Sim / N - Não: ");
 					continuar = entrada.next();
 					 
 					 //Verificação para continuar ou não as movimentações
@@ -678,17 +679,18 @@ public class TESTE {
 				
 					for (int i = 0; i <= contador; i++) {
 						
-						System.out.println(i+1 + "ª movimentação: R$" + movimentacoesEst[i]);
+						System.out.printf("\n" + (i+1) + "ª movimentação: R$%.2f", movimentacoesEst[i] , "\n" );
 						
 					}
 					}
+					System.out.println();
 					Thread.sleep(500);
 					System.out.println("\nDigitalBank G4");
 					Thread.sleep(500);
 					System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
 					Thread.sleep(500);
 					System.out.println("\nAgradecemos a preferência!");
-		
+				
 			break;
 			case 6:
 				System.out.println("\nDigitalBank G4");

@@ -24,12 +24,12 @@ public class ContaEmpresa extends Conta {
 		if (valorEmprestimo > 0 && valorEmprestimo <= 10000) {
 			this.setSaldo(this.getSaldo() + valorEmprestimo);
 			emprestimoEmpresa -= valorEmprestimo;
-			System.out.println("PARABÉNS!!! Você acaba de pegar R$" + valorEmprestimo + " emprestados. \n");
-			System.out.println("Seu novo saldo: " + this.getSaldo());
+			System.out.println("\nPARABÉNS!!! Você acaba de pegar R$" + valorEmprestimo + " emprestados. \n");
+			System.out.printf("\nSeu novo saldo: " + this.getSaldo());
 			if (emprestimoEmpresa > 0) {
-				System.out.println("Você ainda tem R$" + emprestimoEmpresa + " de crédito para você. \n");
+				System.out.println("\nVocê ainda tem R$" + emprestimoEmpresa + " de crédito para você. \n");
 			}else {
-				System.out.println("Você utilizou todos seu limite de empréstimo empresarial. Aproveite com sabedoria! \n");
+				System.out.println("\nVocê utilizou todos seu limite de empréstimo empresarial. Aproveite com sabedoria! \n");
 			}
 		}
 		
@@ -41,7 +41,7 @@ public class ContaEmpresa extends Conta {
 		if(this.getSaldo() >= valor) {
 		this.setSaldo(this.getSaldo() - (valor + 2.3f));
 		} else {
-			System.out.println("Impossivel realizar operação de debito, valor insuficiente!");//ERRO PARA QUE SALDO NÃO POSSA FICAR NEGATIVO DURANTE AS 10 MOVIMENTAÇÕES
+			System.out.println("\nImpossivel realizar operação de debito, valor insuficiente!");//ERRO PARA QUE SALDO NÃO POSSA FICAR NEGATIVO DURANTE AS 10 MOVIMENTAÇÕES
 		}
 	}
 	
