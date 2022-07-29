@@ -16,7 +16,7 @@ public class TESTE {
 		Scanner entrada = new Scanner(System.in);
 		
 		//VARIAVEIS
-		int conta, numero, contador = 0;
+		int conta, numero, contador = 0, contadorEmp = 0;
 		String cpf, continuar, emprestimo;
 		float vMovimento;
 		
@@ -300,7 +300,8 @@ public class TESTE {
 				String cnpj;
 				
 				float[] movimentacoes = new float [10];
-				
+				float[] emprestimoSolicitado = new float [5];
+								
 				ContaEmpresa ce1 =new ContaEmpresa(0, null);
 				ContaEmpresa ce2 =new ContaEmpresa(0, null);
 				ContaEmpresa ce3 =new ContaEmpresa(0, null);
@@ -404,6 +405,9 @@ public class TESTE {
 						if (valorEmprestimoEmpresa <= 10000 && valorEmprestimoEmpresa <= valorDisponivelEmpresa) {
 						valorDisponivelEmpresa -= valorEmprestimoEmpresa;
 						ce1.pedirEmprestimo(valorEmprestimoEmpresa);
+						emprestimoSolicitado[contadorEmp] = valorEmprestimoEmpresa;
+						contadorEmp++;
+						
 						}else {
 							System.out.printf("\nValor não aprovado. Tente um novo valor abaixo de R$%.2f" , valorDisponivelEmpresa);
 						}
@@ -474,6 +478,17 @@ public class TESTE {
 					 }
 					contador++;
 				}
+				
+				System.out.println();
+				
+				for (int j = 0; j < contadorEmp; j++) {
+					
+					System.out.printf("\n" + (j+1) + "° empréstimo: R$%.2f", emprestimoSolicitado[j] , "\n" );
+
+				}
+				
+				System.out.println();
+				
 				for (int i = 0; i <= contador; i++) {
 					
 					System.out.printf("\n" + (i+1) + "ª movimentação: R$%.2f", movimentacoes[i] , "\n" );
@@ -496,7 +511,8 @@ public class TESTE {
 				float valorDisponivelEstudantil = 5000, valorEmprestimoEstudantil;
 								
 				float[] movimentacoesEst = new float [10];
-				
+				float[] emprestimoSolicitadoEst = new float [5];
+
 				ContaEstudantil est1 =new ContaEstudantil(0, null);
 				ContaEstudantil est2 =new ContaEstudantil(0, null);
 				ContaEstudantil est3 =new ContaEstudantil(0, null);
@@ -601,6 +617,9 @@ public class TESTE {
 						if (valorEmprestimoEstudantil <= 5000 && valorEmprestimoEstudantil <= valorDisponivelEstudantil) {
 						valorDisponivelEstudantil -=  valorEmprestimoEstudantil;
 						est1.usarEstudantil(valorEmprestimoEstudantil);
+						emprestimoSolicitadoEst[contadorEmp] = valorEmprestimoEstudantil;
+						contadorEmp++;
+						
 						}else {
 							System.out.printf("\nValor não aprovado. Tente um novo valor abaixo de R$%.2f" , valorDisponivelEstudantil);
 						}
@@ -641,7 +660,6 @@ public class TESTE {
 						vMovimento = entrada.nextFloat();
 						est1.debitado(vMovimento);
 						System.out.printf("\nSaldo atualizado: R$%.2f" , est1.getSaldo());
-					
 						movimentacoesEst[i-1] = -vMovimento;
 
 						break;
@@ -675,6 +693,14 @@ public class TESTE {
 					
 				}
 				
+				System.out.println();
+				
+				for (int j = 0; j < contadorEmp; j++) {
+					
+					System.out.printf("\n" + (j+1) + "° empréstimo: : R$%.2f", emprestimoSolicitadoEst[j] , "\n" );
+
+				}
+
 				System.out.println();
 				
 					for (int i = 0; i <= contador; i++) {
