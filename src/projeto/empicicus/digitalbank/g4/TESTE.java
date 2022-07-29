@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-		//Autor Thiago Da Silva Barbosa Camelo.
+		//Thiago Da Silva Barbosa Camelo.
 		//Felipe Morilho de Castro
 
 public class TESTE {
@@ -98,6 +98,7 @@ public class TESTE {
 
 					Thread.sleep(500);
 				
+					//CONTA NUMERO 1
 					if(cp1.isAtivo() == true) {
 						
 						System.out.println("\nConta: " + cp1.getNumero());
@@ -105,11 +106,11 @@ public class TESTE {
 
 						if(data == cp1.getDiaAniversarioPoupanca()) {
 							Thread.sleep(500);
-							System.out.printf("\nSaldo Atual: R$%.2f" , cp1.getSaldo(), " - ");
+							System.out.printf("\nSaldo Atual: R$%.2f" , cp1.getSaldo());
 							cp1.correcao(data);
 					
 						} else {
-							System.out.printf("\nSaldo Atual: R$%.2f" , cp1.getSaldo(), " - ");
+							System.out.printf("\nSaldo Atual: R$%.2f" , cp1.getSaldo());
 							cp1.correcao(data);
 						}  
 					
@@ -171,11 +172,11 @@ public class TESTE {
 					
 						
 					}
-					for (int j = 0; j <= contador; j++) {
-						
-						System.out.printf("\n" + j+1 + "ª movimentação: R$%.2f", movimentacoesP[j], "\n");
+					for (int i = 0; i <= contador; i++) {
+						System.out.printf("\n" + (i+1) + "ª movimentação: R$%.2f", movimentacoesP[i] , "\n" );
 					}
 							
+					//CONTA NUMERO 2
 				} else if (cp2.isAtivo() == true) {
 					System.out.println("\nConta: " + cp2.getNumero());
 					System.out.println("Cpf: " + cp2.getCpf());
@@ -184,11 +185,11 @@ public class TESTE {
 					if(data == (cp2.getDiaAniversarioPoupanca())) {
 					
 						Thread.sleep(500);
-						System.out.printf("\nSaldo Atual: R$%.2f" , cp2.getSaldo() , " - ");
+						System.out.printf("\nSaldo Atual: R$%.2f" , cp2.getSaldo());
 						cp2.correcao(data);
 					
 					} else {
-						System.out.printf("\nSaldo atual: R$%.2f" , cp2.getSaldo() , " - ");
+						System.out.printf("\nSaldo atual: R$%.2f" , cp2.getSaldo());
 						cp2.correcao(data);
 					}
 				
@@ -253,9 +254,8 @@ public class TESTE {
 					System.out.println();
 					contador++;
 				}
-				for (int j = 0; j <= contador; j++) {
-						
-						System.out.printf("\n" + j+1 + "ª movimentação: R$%.2f", movimentacoesP[j] , "\n" );
+				for (int i = 0; i <= contador; i++) {
+						System.out.printf("\n" + (i+1) + "ª movimentação: R$%.2f", movimentacoesP[i] , "\n" );
 				
 					
 				}

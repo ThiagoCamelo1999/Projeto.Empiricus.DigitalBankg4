@@ -12,7 +12,7 @@ public class ContaPoupanca extends Conta {
 	//CONSTRUTOR
 	public ContaPoupanca(int numero, String cpf) {
 		super(numero, cpf);
-		this.diaAniversarioPoupanca = 25;	
+		this.diaAniversarioPoupanca = 28;	
 		}
 	
 	
@@ -22,9 +22,9 @@ public class ContaPoupanca extends Conta {
 		
 		if (data == diaAniversarioPoupanca) {//VERIFICANDO CONDIÇÃO PARA MÉTODO SER UTILIZADO
 			this.setSaldo((this.getSaldo() * 0.05f) + this.getSaldo() );
-			System.out.println("Saldo corrigido: " + this.getSaldo() + "\n");
+			System.out.println(" - Saldo corrigido: R$" + this.getSaldo() + "\n");
 		} else {
-			System.out.print("Não é a data para correção \n");
+			System.out.print(" - Não é a data para correção \n");
 		}
 	}
 	
