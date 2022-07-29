@@ -171,14 +171,14 @@ public class TESTE {
 						System.out.print("Valor movimento: R$ ");
 						vMovimento = entrada.nextFloat();
 						ce.credito(vMovimento);
-						System.out.println(ce.getSaldo());
+						System.out.println("Seu saldo atual é: "+ce.getSaldo());
 						
 					//VERIFICA SE O TIPO DA MOVIMENTAÇÃO É DEBITO.
 					} else if(tipoMV.equalsIgnoreCase("D")) {
 						System.out.print("Valor movimento: R$ ");
 						vMovimento = entrada.nextFloat();
 						ce.usarLimite(vMovimento);
-						
+						System.out.println("Seu saldo atual é: "+ce.getSaldo());
 					} else {
 						i--;
 					}
@@ -200,7 +200,7 @@ public class TESTE {
 					 
 					 }
 				} 
-				System.out.println(ce.getSaldo());
+				System.out.println("Seu saldo atual é: "+ce.getSaldo());
 				
 			break;
 			case 4:
