@@ -27,7 +27,7 @@ public class ContaEmpresa extends Conta {
 			System.out.println("\nPARABÉNS!!! Você acaba de pegar R$" + valorEmprestimo + " emprestados. \n");
 			System.out.printf("\nSeu novo saldo: " + this.getSaldo());
 			if (emprestimoEmpresa > 0) {
-				System.out.println("\nVocê ainda tem R$" + emprestimoEmpresa + " de crédito para você. \n");
+				System.out.printf("\nVocê ainda tem de crédito: R$%.2f" , emprestimoEmpresa);
 			}else {
 				System.out.println("\nVocê utilizou todos seu limite de empréstimo empresarial. Aproveite com sabedoria! \n");
 			}
@@ -38,11 +38,9 @@ public class ContaEmpresa extends Conta {
 	}
 
 	private void debito(float valor) {//RETIRA O VALOR DO SALDO CASO TENHA USADO A FUNÇÃO DE DEBITO
-		if(this.getSaldo() >= valor) {
+		if(this.getSaldo() >= (valor + 2.3f)) {
 		this.setSaldo(this.getSaldo() - (valor + 2.3f));
-		} else {
-			System.out.println("\nImpossivel realizar operação de debito, valor insuficiente!");//ERRO PARA QUE SALDO NÃO POSSA FICAR NEGATIVO DURANTE AS 10 MOVIMENTAÇÕES
-		}
+		} 
 	}
 	
 	public void debitado(float valor) { 

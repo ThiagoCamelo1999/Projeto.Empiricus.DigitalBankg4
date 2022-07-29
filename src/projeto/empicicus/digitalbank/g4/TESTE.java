@@ -136,9 +136,16 @@ public class TESTE {
 					} else if(tipoMV.equalsIgnoreCase("D")) {
 						System.out.print("Valor movimento: R$");
 						vMovimento = entrada.nextFloat();
+						if (vMovimento >= cp1.getSaldo()) {
 						cp1.debitado(vMovimento);
 						System.out.printf("\nSaldo atualizado: R$%.2f" , cp1.getSaldo());	
 						movimentacoesP[i-1] = -vMovimento;
+						}else {
+							System.out.println("\nImpossivel realizar operação de debito, valor insuficiente!");//ERRO PARA QUE SALDO NÃO POSSA FICAR NEGATIVO DURANTE AS 10 MOVIMENTAÇÕES
+							i--;
+							contador--;
+							break;
+						}
 						} else {
 							System.out.println("\nOperação invalida!");
 							System.out.println();
@@ -219,9 +226,17 @@ public class TESTE {
 					} else if(tipoMV.equalsIgnoreCase("D")) {
 						System.out.print("Valor movimento: R$ ");
 						vMovimento = entrada.nextFloat();
+						if (vMovimento >= cp2.getSaldo()) {
 						cp2.debitado(vMovimento);
 						System.out.printf("\nSaldo atualizado: R$%.2f" , cp2.getSaldo());	
 						movimentacoesP[i-1] = -vMovimento;
+						break;
+						} else {
+							System.out.println("\nImpossivel realizar operação de debito, valor insuficiente!");//ERRO PARA QUE SALDO NÃO POSSA FICAR NEGATIVO DURANTE AS 10 MOVIMENTAÇÕES
+							i--;
+							contador--;
+							break;
+						}
 						} else {
 						System.out.println("\nOperação invalida!");
 						System.out.println();
@@ -255,8 +270,10 @@ public class TESTE {
 					contador++;
 				}
 				for (int i = 0; i <= contador; i++) {
+					
+					if ((i+1) <= 10) {
 						System.out.printf("\n" + (i+1) + "ª movimentação: R$%.2f", movimentacoesP[i] , "\n" );
-				
+					}
 					
 				}
 					} 
@@ -373,7 +390,7 @@ public class TESTE {
 							break;
 						}
 						
-					} else if (i == 4 && ce6.isAtivo() == false){
+					} else if (i == 4 && ce6.isAtivo() == false){ 
 						System.out.println("\nConta Inativa.");
 					}
 				}
@@ -391,20 +408,20 @@ public class TESTE {
 					
 					//PERGUNTA SOBRE O EMPRÉSTIMO
 					if (valorDisponivelEmpresa > 0) {
-					System.out.println("\nVocê tem R$" + valorDisponivelEmpresa + " aprovados para empréstimo. Vamos dar um upgrade na sua empresa?");	
+					System.out.printf("\nVocê tem aprovado para empréstimo: R$%.2f" , valorDisponivelEmpresa);	
 					System.out.printf("\nDigite: S - Sim / N - Não: ");
 					emprestimo = entrada.next();
 					
 					switch (emprestimo){
 					
 					case "s", "S":	
-					//if (emprestimo.equalsIgnoreCase("S")) {
+						
 						do {
 						System.out.println("\nQual valor deseja pegar de empréstimo? ");
 						valorEmprestimoEmpresa = entrada.nextFloat();
 						if (valorEmprestimoEmpresa <= 10000 && valorEmprestimoEmpresa <= valorDisponivelEmpresa) {
 						valorDisponivelEmpresa -= valorEmprestimoEmpresa;
-						ce1.pedirEmprestimo(valorEmprestimoEmpresa);
+						ce6.pedirEmprestimo(valorEmprestimoEmpresa);
 						emprestimoSolicitado[contadorEmp] = valorEmprestimoEmpresa;
 						contadorEmp++;
 						
@@ -433,8 +450,8 @@ public class TESTE {
 						
 						System.out.printf("\nValor movimento: R$");
 						vMovimento = entrada.nextFloat();
-						ce1.credito(vMovimento);
-						System.out.printf("\nSaldo atualizado: R$%.2f" , ce1.getSaldo());
+						ce6.credito(vMovimento);
+						System.out.printf("\nSaldo atualizado: R$%.2f" , ce6.getSaldo());
 						
 						movimentacoes[i-1] = vMovimento;
 						
@@ -445,12 +462,20 @@ public class TESTE {
 						
 						System.out.printf("\nValor movimento: R$");
 						vMovimento = entrada.nextFloat();
-						ce1.debitado(vMovimento);
-						System.out.printf("\nSaldo atualizado: R$%.2f" , ce1.getSaldo());
+						if ((vMovimento+2.3f) <= ce6.getSaldo()) {
+
+						ce6.debitado(vMovimento);
+						System.out.printf("\nSaldo atualizado: R$%.2f" , ce6.getSaldo());
 					
 						movimentacoes[i-1] = -vMovimento;
-						
 						break;
+						
+						} else {
+							System.out.println("\nImpossivel realizar operação de debito, valor insuficiente!");//ERRO PARA QUE SALDO NÃO POSSA FICAR NEGATIVO DURANTE AS 10 MOVIMENTAÇÕES
+							i--;
+							contador--;
+							break;
+						}
 					
 					default:
 						
@@ -462,7 +487,46 @@ public class TESTE {
 					Thread.sleep(500);
 					
 					if(i == 10) {//IF PARA OPÇÃO CONTINUAR NÃO APAREÇA UMA VEZ A MAIS 
+						
+						//PERGUNTA SOBRE O EMPRÉSTIMO
+						if (valorDisponivelEmpresa > 0) {
+						System.out.printf("\nVocê tem aprovado para empréstimo: R$%.2f" , valorDisponivelEmpresa);	
+						System.out.printf("\nDigite: S - Sim / N - Não: ");
+						emprestimo = entrada.next();
+						
+						switch (emprestimo){
+						
+						case "s", "S":	
+							
+							do {
+							System.out.println("\nQual valor deseja pegar de empréstimo? ");
+							valorEmprestimoEmpresa = entrada.nextFloat();
+							if (valorEmprestimoEmpresa <= 10000 && valorEmprestimoEmpresa <= valorDisponivelEmpresa) {
+							valorDisponivelEmpresa -= valorEmprestimoEmpresa;
+							ce6.pedirEmprestimo(valorEmprestimoEmpresa);
+							emprestimoSolicitado[contadorEmp] = valorEmprestimoEmpresa;
+							contadorEmp++;
+							
+							}else {
+								System.out.printf("\nValor não aprovado. Tente um novo valor abaixo de R$%.2f" , valorDisponivelEmpresa);
+							}
+							} while (valorEmprestimoEmpresa > 10000);
+						
+						case "n","N":
+							break;
+						
+						default:
+							System.out.println("\nComando Inválido.");							
+						}
+						} else {
+							System.out.println("\nSeu limite de crédito esgotou. Aproveite o empréstimo já realizado!\n");
+						}
+						
+						Thread.sleep(500);
+						System.out.println("\nMovimentações encerradas!" + "\nSegue extrato das movimentações: ");
+						
 						break;
+						
 					}
 					
 					//PERGUNTA SE É PARA CONTINUAR COM AS MOVIMENTAÇÕES
@@ -473,7 +537,10 @@ public class TESTE {
 										
 					 //Verificação para continuar ou não as movimentações
 					if (continuar.equalsIgnoreCase("N")) {
-						 break;
+						Thread.sleep(500);
+						System.out.println("\nMovimentações encerradas!" + "\nSegue extrato das movimentações: ");
+						
+						break;
 					 
 					 }
 					contador++;
@@ -492,7 +559,6 @@ public class TESTE {
 				for (int i = 0; i <= contador; i++) {
 					
 					System.out.printf("\n" + (i+1) + "ª movimentação: R$%.2f", movimentacoes[i] , "\n" );
-
 				}
 				}
 				System.out.println();
@@ -601,7 +667,7 @@ public class TESTE {
 					
 					if (valorDisponivelEstudantil > 0 ) {
 						
-					System.out.println("\nVocê tem R$" + valorDisponivelEstudantil + " aprovados para empréstimo. Vamos aproveitar?");	
+					System.out.printf("\nVocê tem aprovado para empréstimo: R$%.2f" , valorDisponivelEstudantil);	
 					System.out.printf("\nDigite: S - Sim / N - Não: ");
 					emprestimo = entrada.next();
 					
@@ -616,7 +682,7 @@ public class TESTE {
 						valorEmprestimoEstudantil = entrada.nextFloat();
 						if (valorEmprestimoEstudantil <= 5000 && valorEmprestimoEstudantil <= valorDisponivelEstudantil) {
 						valorDisponivelEstudantil -=  valorEmprestimoEstudantil;
-						est1.usarEstudantil(valorEmprestimoEstudantil);
+						est6.usarEstudantil(valorEmprestimoEstudantil);
 						emprestimoSolicitadoEst[contadorEmp] = valorEmprestimoEstudantil;
 						contadorEmp++;
 						
@@ -645,8 +711,8 @@ public class TESTE {
 						
 						System.out.printf("\nValor movimento: R$");
 						vMovimento = entrada.nextFloat();
-						est1.credito(vMovimento);
-						System.out.printf("\nSaldo atualizado: R$%.2f" , est1.getSaldo());
+						est6.credito(vMovimento);
+						System.out.printf("\nSaldo atualizado: R$%.2f" , est6.getSaldo());
 						
 						movimentacoesEst[i-1] = vMovimento;
 
@@ -658,11 +724,17 @@ public class TESTE {
 						
 						System.out.printf("\nValor movimento: R$");
 						vMovimento = entrada.nextFloat();
-						est1.debitado(vMovimento);
-						System.out.printf("\nSaldo atualizado: R$%.2f" , est1.getSaldo());
+						if ((vMovimento+0.7f) <= est6.getSaldo()) {
+						est6.debitado(vMovimento);
+						System.out.printf("\nSaldo atualizado: R$%.2f" , est6.getSaldo());
 						movimentacoesEst[i-1] = -vMovimento;
-
 						break;
+						} else {
+							System.out.println("\nImpossivel realizar operação de debito, valor insuficiente!");//ERRO PARA QUE SALDO NÃO POSSA FICAR NEGATIVO DURANTE AS 10 MOVIMENTAÇÕES
+							i--;
+							contador--;
+							break;
+						}
 						
 					default:
 						
@@ -676,6 +748,46 @@ public class TESTE {
 					Thread.sleep(500);
 					
 					if(i == 10) {//IF PARA OPÇÃO CONTINUAR NÃO APAREÇA UMA VEZ A MAIS 
+						if (valorDisponivelEstudantil > 0 ) {
+							
+							System.out.printf("\nVocê tem aprovado para empréstimo: R$%.2f" , valorDisponivelEstudantil);	
+							System.out.printf("\nDigite: S - Sim / N - Não: ");
+							emprestimo = entrada.next();
+							
+							
+							switch (emprestimo){
+								
+							case "s", "S":	
+							
+							//if (emprestimo.equalsIgnoreCase("S")) {
+								do {
+								System.out.printf("\nQual valor deseja pegar de empréstimo? ");
+								valorEmprestimoEstudantil = entrada.nextFloat();
+								if (valorEmprestimoEstudantil <= 5000 && valorEmprestimoEstudantil <= valorDisponivelEstudantil) {
+								valorDisponivelEstudantil -=  valorEmprestimoEstudantil;
+								est6.usarEstudantil(valorEmprestimoEstudantil);
+								emprestimoSolicitadoEst[contadorEmp] = valorEmprestimoEstudantil;
+								contadorEmp++;
+								
+								}else {
+									System.out.printf("\nValor não aprovado. Tente um novo valor abaixo de R$%.2f" , valorDisponivelEstudantil);
+								}
+								} while (valorEmprestimoEstudantil > 5000);
+								
+							
+							case "n","N":
+								break;
+							
+							default:
+								System.out.println("\nComando Inválido.");
+							}
+							} else {
+								System.out.println("Seu limite de crédito esgotou. Aproveite o empréstimo já realizado!\n");
+							}
+						
+						Thread.sleep(500);
+						System.out.println("\nMovimentações encerradas!" + "\nSegue extrato das movimentações: ");
+						
 						break;
 					}
 					
@@ -686,6 +798,9 @@ public class TESTE {
 					 
 					 //Verificação para continuar ou não as movimentações
 					if (continuar.equalsIgnoreCase("N")) {
+						Thread.sleep(500);
+						System.out.println("\nMovimentações encerradas!" + "\nSegue extrato das movimentações: ");
+						
 						 break;
 					
 					 }
@@ -705,8 +820,9 @@ public class TESTE {
 				
 					for (int i = 0; i <= contador; i++) {
 						
+						if ((i+1) <= 10) {
 						System.out.printf("\n" + (i+1) + "ª movimentação: R$%.2f", movimentacoesEst[i] , "\n" );
-						
+						}	
 					}
 					}
 					System.out.println();
@@ -726,11 +842,10 @@ public class TESTE {
 			default:
 
 				System.out.println();
-				System.out.println("OPÇÃO INVALIDA! TENTE NOVAMENTE");
+				System.out.println("Opção inválida! Tente novamente");
 
 				
 				Thread.sleep(500);
-				System.out.println("Comando Inválido! Tente novamente.");
 
 		} 
 		} while (conta < 1 || conta > 6);

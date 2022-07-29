@@ -21,7 +21,7 @@ public class ContaEstudantil extends Conta {
 			System.out.println("\nPARABÉNS!!! Você acaba de pegar R$" + valorSolicitado + " emprestados.");
 			System.out.printf("\nSeu novo saldo: R$%.2f" , this.getSaldo());
 			if (limiteEstudantil > 0) {
-				System.out.println("\nVocê ainda tem R$" + limiteEstudantil + " de crédito para você. \n");
+				System.out.printf("\nVocê ainda tem de crédito: R$%.2f" , limiteEstudantil);
 			}else {
 				System.out.printf("\nVocê utilizou todos seu limite de empréstimo estudantil. Aproveite com sabedoria! \n");
 			}
@@ -29,11 +29,9 @@ public class ContaEstudantil extends Conta {
 	}
 
 	private void debito(float valor) {//Função débito. Retira o valor solicitado do saldo, acrescido da taxa de movimentação
-		if(this.getSaldo() >= valor) {
+		if(this.getSaldo() >= (valor + 0.7f)) {
 		this.setSaldo(this.getSaldo() - (valor + 0.7f));
-		} else {
-			System.out.println("\nImpossivel realizar operação de debito, valor insuficiente!");//ERRO PARA QUE SALDO NÃO POSSA FICAR NEGATIVO DURANTE AS 10 MOVIMENTAÇÕES
-		}
+		} 
 	}
 	
 	public void debitado(float valor) { 
