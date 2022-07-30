@@ -401,7 +401,7 @@ public class TESTE {
 				Thread.sleep(500);
 				
 				
-				System.out.printf("Digite o numero: ");
+				System.out.printf("Digite o número da conta: ");
 				numero = entrada.nextInt();
 				
 				
@@ -659,7 +659,7 @@ public class TESTE {
 				System.out.println("\nCONTA ESTUDANTIL\n");
 				Thread.sleep(500);
 				
-				System.out.printf("Digite o numero: ");
+				System.out.printf("Digite o número da conta: ");
 				numero = entrada.nextInt();
 				
 				do{
