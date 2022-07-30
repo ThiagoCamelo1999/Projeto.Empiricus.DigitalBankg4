@@ -566,9 +566,87 @@ public class TESTE {
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
+<<<<<<< HEAD
+			break;
+			case 3: //CONTA ESPECIAL
+				System.out.println("\nDigitalBank G4");
+				Thread.sleep(500);
+				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
+				
+				Thread.sleep(500);
+				System.out.println("\nCONTA ESPECIAL");
+				Thread.sleep(500);
+				
+				
+				System.out.print("Digite o numero: ");
+				numero = entrada.nextInt();
+				
+				
+				System.out.print("Digite seu cpf: ");
+				cpf = entrada.next();
+				ContaEspecial ce = new ContaEspecial(numero, cpf); //Criação da conta
+				do
+				if (ce.getCpf().length() != 11) {
+					System.out.println("\nCPF INVALIDO! TENTE NOVAMENTE \n");
+					System.out.print("Digite seu cpf: ");
+					ce.setCpf(entrada.next());				
+				} while(ce.getCpf().length() != 11);
+				
+				Thread.sleep(500);
+				
+				
+				
+				//LAÇO PARA REPETIR A MOVIMENTAÇÃO 10 VEZES 
+				for(int i = 1; i <= 10; i++) {
+					System.out.print("MOVIMENTO - D-debito ou C-crédito: ");
+					String tipoMV = entrada.next();
+					
+					//VERIFICA SE O TIPO DA MOVIMENTAÇÃO É CREDITO.
+					if(tipoMV.equalsIgnoreCase("C")) { 
+						System.out.print("Valor movimento: R$ ");
+						vMovimento = entrada.nextFloat();
+						ce.credito(vMovimento);
+						System.out.println("Seu saldo atual é: "+ce.getSaldo());
+						
+					//VERIFICA SE O TIPO DA MOVIMENTAÇÃO É DEBITO.
+					} else if(tipoMV.equalsIgnoreCase("D")) {
+						System.out.print("Valor movimento: R$ ");
+						vMovimento = entrada.nextFloat();
+						ce.usarLimite(vMovimento);
+						System.out.println("Seu saldo atual é: "+ce.getSaldo());
+					} else {
+						i--;
+					}
+					
+					Thread.sleep(500);
+					
+					if(i == 10) {//IF PARA OPÇÃO CONTINUAR NÃO APAREÇA UMA VEZ MAIS 
+						break;
+					}
+					
+					//PERGUNTA SE É PARA CONTINUAR COM AS MOVIMENTAÇÕES
+					System.out.println("\n");
+					System.out.print("Continuar S/N: ");
+					 continuar = entrada.next();
+					 
+					 //VERIFICAÇÃO, SE RESPOSTA DO USUARIO IGUAL A N/n IRA PARA AS MOVIMENTAÇÕES E CONTINUAR COM CODIGO
+					if (continuar.equalsIgnoreCase("N")) {
+						 break;
+					 
+					 }
+				} 
+				System.out.println("Seu saldo atual é: "+ce.getSaldo());
+				
+			break;
+			case 4:
+				System.out.println("\nDigitalBank G4");
+				Thread.sleep(500);
+				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
+=======
 				Thread.sleep(500);
 				System.out.println("\nAgradecemos a preferência!");
 
+>>>>>>> 833dcd9db00001cb9923e29854ad8e38219fedc2
 			break;
 			case 5:
 				
