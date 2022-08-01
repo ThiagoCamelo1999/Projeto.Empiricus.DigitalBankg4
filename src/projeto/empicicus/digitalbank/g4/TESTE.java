@@ -149,6 +149,7 @@ public class TESTE {
 						} else {
 							System.out.println("\nOperação invalida!");
 							System.out.println();
+							contador--;
 							i--;//PARA PODER FAZER MAIS UMA MOVIMENTAÇÃO CASO SEJA DIGITADA OPERAÇÃO INVALIDA
 							}
 					
@@ -169,7 +170,7 @@ public class TESTE {
 						System.out.println("\nProxima movimentação: ");
 					} else if (continuar.equalsIgnoreCase("N")) {
 						
-						System.out.println("\nMovimentções encerradas");
+						System.out.println("\nMovimentações encerradas");
 						 break;
 			
 					} else {
@@ -240,6 +241,7 @@ public class TESTE {
 						} else {
 						System.out.println("\nOperação invalida!");
 						System.out.println();
+						contador--;
 						i--;//PARA PODER FAZER MAIS UMA MOVIMENTAÇÃO CASO SEJA DIGITADA OPERAÇÃO INVALIDA
 					}
 				
@@ -293,6 +295,17 @@ public class TESTE {
 				System.out.println("\nDigitalBank G4");
 				Thread.sleep(500);
 				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
+				
+				Thread.sleep(500);
+				System.out.println("\nEstamos passando por manutenção nessa opção. Por favor, selecione outro tipo de conta.");
+				Thread.sleep(500);
+				System.out.println("\nAgradecemos a compreensão.");
+				
+				Thread.sleep(500);
+				System.out.println("\nDigitalBank G4");
+				Thread.sleep(500);
+				System.out.println("Cuidamos do seu dinheiro, para você cuidar do que realmente importa");
+				
 			break;
 			
 			
@@ -541,6 +554,7 @@ public class TESTE {
 						
 						System.out.println("\nComando inválido.");
 						i--;
+						contador--;
 						break;
 					}
 										
@@ -596,17 +610,26 @@ public class TESTE {
 					
 										
 					 //Verificação para continuar ou não as movimentações
+					
 					if (continuar.equalsIgnoreCase("N")) {
 						Thread.sleep(500);
 						System.out.println("\nMovimentações encerradas!" + "\nSegue extrato das movimentações: ");
 						
 						break;
 					 
-					 }
-					contador++;
+					 } else if (continuar.equalsIgnoreCase("S")) {
+
+						System.out.println("\nProxima movimentação: ");
+			
+					} else {
+						System.out.println("\nOpção invalida! As movimentações irão continuar.");
+					}
+				
+				contador++;
 				}
 				
 				System.out.println();
+				
 				
 				for (int j = 0; j < contadorEmp; j++) {
 					
@@ -801,7 +824,7 @@ public class TESTE {
 						System.out.println("\nComando inválido.");
 						
 						i--; 
-						
+						contador--;
 						break;
 					}
 										
@@ -861,9 +884,15 @@ public class TESTE {
 						Thread.sleep(500);
 						System.out.println("\nMovimentações encerradas!" + "\nSegue extrato das movimentações: ");
 						
-						 break;
-					
-					 }
+						break;
+					 
+					 } else if (continuar.equalsIgnoreCase("S")) {
+
+						System.out.println("\nProxima movimentação: ");
+			
+					} else {
+						System.out.println("\nOpção invalida! As movimentações irão continuar.");
+					}
 					contador++;
 					
 				}
